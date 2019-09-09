@@ -9,7 +9,8 @@
 
   tasks:
     - import_role:
-          name: common
+        name: common
     - import_role:
-          name: bindep
-
+        name: bindep
+    - import_role:
+        name: dotfiles

@@ -9,22 +9,19 @@
 # Now that we have their bindep, lets run bindep and find out
 # what we have to install on this system
 - name: run bindep to discover users's required pacakges
-  shell: bindep -f /tmp/bindep.txt -l newline
+  shell: bindep -f /tmp/bindep.txt
   register: bindep_result
+  ignore_errors: True
 
-- name: dump out list of bindeps
-  debug:
-    msg: "{{ bindep_result }}"
-
-- name: dump each bindep
-  debug:
-    msg: "{{ item }}"
-  with_items:
-     - "{{bindep_result.stdout_lines}}"
+- name: run bindep to discover users's required pacakges
+  shell: bindep -f /tmp/bindep.txt -l newline
+  register: bindep_list_result
 
 - name: install list of packages
   package:
      name: "{{ item }}"
      state: present
   with_items:
-     - "{{bindep_result.stdout_lines}}"
+     - "{{bindep_list_result.stdout_lines}}"
+  when: >
+      bindep_result.stdout != ""
