@@ -1,0 +1,15 @@
+---
+# Create a hosts file that defines the host you
+# want to install everything on labeled 'deploy'
+- hosts: deploy
+  gather_facts: True
+  become: True
+  roles:
+    - common
+
+  tasks:
+    - import_role:
+          name: common
+    - import_role:
+          name: bindep
+

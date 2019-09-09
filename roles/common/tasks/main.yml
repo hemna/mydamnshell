@@ -1,0 +1,10 @@
+---
+- name: include_tasks install_on_suse.yml
+  include_tasks: install_on_suse.yml
+  when: ansible_os_family == "Suse"
+  tags: package-install
+
+- name: include_tasks install_on_ubuntu.yml
+  include_tasks: roles/common/tasks/installs_on_ubuntu.yml
+  when: ansible_os_family == "Debian"
+  tags: package-install

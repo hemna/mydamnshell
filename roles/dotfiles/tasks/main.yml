@@ -1,0 +1,10 @@
+---
+- block:
+  - name: "Fetch {{ username }}'s dotfiles"
+    git:
+      repo: "{{ item.url }}"
+      dest: "{{ item.name }}"
+    with_items:
+        - "{{ dotfiles_git_repos }}"
+  become: yes
+  become_user: "{{ username }}"

@@ -1,0 +1,30 @@
+---
+- name: fetch bindep.txt file from remote
+  get_url:
+      url: "{{ bindep_url }}"
+      dest: /tmp/bindep.txt
+      force: True
+      mode: '0444'
+
+# Now that we have their bindep, lets run bindep and find out
+# what we have to install on this system
+- name: run bindep to discover users's required pacakges
+  shell: bindep -f /tmp/bindep.txt -l newline
+  register: bindep_result
+
+- name: dump out list of bindeps
+  debug:
+    msg: "{{ bindep_result }}"
+
+- name: dump each bindep
+  debug:
+    msg: "{{ item }}"
+  with_items:
+     - "{{bindep_result.stdout_lines}}"
+
+- name: install list of packages
+  package:
+     name: "{{ item }}"
+     state: present
+  with_items:
+     - "{{bindep_result.stdout_lines}}"
