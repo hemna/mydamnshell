@@ -3,8 +3,8 @@
 suse_package_dependencies:
     - wget
     - git
-    - python3
-    - python3-pip
+    - python2
+    - python2-pip
 
 # List of python packages required to run this tool
 suse_python_dependencies:
