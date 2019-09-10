@@ -2,6 +2,24 @@
 # Create a hosts file that defines the host you
 # want to install everything on labeled 'deploy'
 - hosts: deploy
+  gather_facts: False
+
+  tasks:
+    - name: check for ssh-keys on deploy
+      local_action: shell ssh-keygen -F {{ inventory_hostname }}
+      register: has_entry_in_known_hosts_file
+      ignore_errors: yes
+
+    - name: debug it
+      debug:
+        msg: "{{ has_entry_in_known_hosts_file.rc }}"
+
+    - name: Ignore host key on first run
+      when: has_entry_in_known_hosts_file.rc == 255
+      set_fact:
+        ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
+
+- hosts: deploy
   gather_facts: True
   become: True
 
