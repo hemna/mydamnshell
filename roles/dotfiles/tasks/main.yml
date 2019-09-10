@@ -20,7 +20,7 @@
 
 
 - name: "Run the dotfiles setup.sh"
-  command: ./setup.sh
+  shell: ./setup.sh
   args:
     chdir: "{{ item.name }}"
   become: True
