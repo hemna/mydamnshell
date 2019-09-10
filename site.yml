@@ -4,8 +4,6 @@
 - hosts: deploy
   gather_facts: True
   become: True
-  roles:
-    - common
 
   tasks:
     - import_role:
