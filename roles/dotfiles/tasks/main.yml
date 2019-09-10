@@ -4,7 +4,23 @@
     git:
       repo: "{{ item.url }}"
       dest: "{{ item.name }}"
+      version: "{{ item.branch }}"
     with_items:
         - "{{ dotfiles_git_repos }}"
   become: yes
   become_user: "{{ username }}"
+
+
+- name: "Run the dotfiles setup.sh"
+  command: ./setup.sh
+  args:
+    chdir: "{{ item.name }}"
+  become: True
+  become_user: "{{ username }}"
+  register: dotfiles_result
+  with_items:
+      - "{{ dotfiles_git_repos }}"
+
+- name: Dotfiles install result
+  debug:
+    msg: "{{ dotfiles_result }}"
