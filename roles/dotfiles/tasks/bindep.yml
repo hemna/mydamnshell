@@ -2,12 +2,12 @@
 # Now that we have their bindep, lets run bindep and find out
 # what we have to install on this system
 - name: run bindep to discover users's required pacakges
-  shell: bindep -f {{ item.name }}/{{ bindep_file }}
+  shell: bindep -f ~{{ username }}/{{ item.name }}/{{ bindep_file }}
   register: bindep_result
   ignore_errors: True
 
 - name: run bindep to discover users's required pacakges
-  shell: bindep -f /tmp/bindep.txt -l newline
+  shell: bindep -f ~{{ username }}/{{ item.name }}/{{ bindep_file }} -l newline
   register: bindep_list_result
 
 - name: install list of packages
