@@ -1,4 +1,14 @@
 ---
+- name: add zypper repositories
+  zypper_repository:
+      name: "{{ item.name }}"
+      repo: "{{ item.url }}"
+      state: present
+      auto_import_keys: yes
+      runrefresh: yes
+  with_items:
+      - "{{ suse_package_repos }}"
+
 - name: install required suse dependencies
   become: True
   package:
