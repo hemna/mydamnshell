@@ -5,6 +5,7 @@ suse_package_dependencies:
     - git
     - python2
     - python2-pip
+    - acl
 
 # List of python packages required to run this tool
 suse_python_dependencies:

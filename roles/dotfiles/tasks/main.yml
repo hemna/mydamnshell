@@ -7,8 +7,16 @@
       version: "{{ item.branch }}"
     with_items:
         - "{{ dotfiles_git_repos }}"
+
+  - name: install any python-requirements
+    pip:
+      requirements: "{{ item.name }}/python-requirements.txt"
+    with_items:
+        - "{{ dotfiles_git_repos }}"
+    ignore_errors: true
   become: yes
   become_user: "{{ username }}"
+
 
 
 - name: "Run the dotfiles setup.sh"
