@@ -10,7 +10,7 @@
 
   - name: install any python-requirements
     pip:
-      requirements: "{{ item.name }}/python-requirements.txt"
+      requirements: "~/{{ item.name }}/python-requirements.txt"
     with_items:
         - "{{ dotfiles_git_repos }}"
     ignore_errors: true
