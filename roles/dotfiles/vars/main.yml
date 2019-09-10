@@ -1,0 +1,8 @@
+---
+
+# The location of the bindep.txt file relative to the top level dir
+# of the dotfiles directory
+bindep_file: requirements/bindep.txt
+
+python2_requirements: requirements/python-requirements.txt
+python3_requirements: requirements/python3-requirements.txt

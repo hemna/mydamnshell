@@ -27,6 +27,4 @@
     - import_role:
         name: common
     - import_role:
-        name: bindep
-    - import_role:
         name: dotfiles

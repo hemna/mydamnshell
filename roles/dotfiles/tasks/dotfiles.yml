@@ -1,0 +1,36 @@
+---
+
+- name: "Fetch {{ username }}'s dotfiles"
+  git:
+    repo: "{{ item.url }}"
+    dest: "{{ item.name }}"
+    version: "{{ item.branch }}"
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Call bindep
+  include_tasks: bindep.yml
+
+- name: install any python2 requirements
+  pip:
+    requirements: "~{{username}}/{{ item.name }}/{{ python2_requirements }}"
+  ignore_errors: true
+  become: yes
+
+- name: install any python3 requirements
+  pip:
+    requirements: "~{{username}}/{{ item.name }}/{{ python3_requirements }}"
+  ignore_errors: true
+  become: yes
+
+- name: "Run the dotfiles setup.sh"
+  shell: ./setup.sh
+  args:
+    chdir: "{{ item.name }}"
+  become: True
+  become_user: "{{ username }}"
+  register: dotfiles_result
+
+- name: Dotfiles install result
+  debug:
+    msg: "{{ dotfiles_result }}"

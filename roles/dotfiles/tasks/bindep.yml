@@ -1,15 +1,8 @@
 ---
-- name: fetch bindep.txt file from remote
-  get_url:
-      url: "{{ bindep_url }}"
-      dest: /tmp/bindep.txt
-      force: True
-      mode: '0444'
-
 # Now that we have their bindep, lets run bindep and find out
 # what we have to install on this system
 - name: run bindep to discover users's required pacakges
-  shell: bindep -f /tmp/bindep.txt
+  shell: bindep -f {{ item.name }}/{{ bindep_file }}
   register: bindep_result
   ignore_errors: True
 
