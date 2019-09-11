@@ -46,6 +46,7 @@ MDS requires [Ansible](https://docs.ansible.com/ansible/latest/index.html) v2.8 
 
 ## Systems supported
 - openSuse
+- ubuntu
 
 
 ### Installation
@@ -84,7 +85,6 @@ $ ansible-playbook -i hosts site.yml
 ### Todos
 
  - Write Tests
- - add support for Ubuntu
  - add support for Redhat
  - add support for MacOS
 
