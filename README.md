@@ -32,11 +32,49 @@ The 'dotfiles' repo has to have a few required files and directories
     - python3-requirements.txt (optional)
 - a setup script called 'setup.sh'
 
+## Example dotfiles repo
+
+https://github.com/hemna/.dotfiles
+
 
 # Bindep
 Bindep is a tool for checking the presence of binary packages needed to use an application / library. It started life as a way to make it easier to set up a development environment for OpenStack projects. While OpenStack depends heavily on pip for installation of Python dependencies, some dependencies are not Python based, and particularly for testing, some dependencies have to be installed before pip can be used - such as virtualenv and pip itself.
 
 https://pypi.org/project/bindep/
+
+## Example bindep that supports ubuntu, suse, macos
+
+```
+# Bindep to describe what apps are required on which systems
+
+ansible
+htop
+
+# For MacOS
+coreutils [platform:brew]
+python [platform:brew]
+pip-completion [platform:brew]
+
+# For Ubuntu
+build-essential [platform:dpkg]
+autoconf [platform:dpkg platform:rpm]
+automake [platform:dpkg platform:rpm]
+libtool [platform:dpkg platform:rpm]
+xclip [platform:dpkg platform:rpm]
+lnav [platform:dpkg platform:rpm platform:brew]
+lsb-release [platform:ubuntu platform:suse]
+fish [platform:ubuntu platform:brew platform:suse]
+python-autopep8 [platform:ubuntu]
+vim-autopep8 [platform:ubuntu]
+
+# For openSUSE
+python2-autopep8 [platform:suse]
+python3-autopep8 [platform:suse]
+jo [platform:suse]
+hostname [platform:suse]
+vim-data [platform:suse]
+autopep8 [platform:suse]
+```
 
 
 ## Requirements
