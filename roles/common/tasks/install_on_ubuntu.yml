@@ -7,6 +7,7 @@
       validate_certs: yes
   with_items:
       - "{{ ubuntu_package_repos }}"
+  when: ubuntu_package_repos is defined
 
 - name: install required ubuntu dependencies
   become: True
@@ -15,6 +16,7 @@
      state: present
   register: result
   until: result is succeeded
+  when: ubuntu_package_dependencies is defined
 
 - name: install required ubuntu python dependencies
   become: True
@@ -23,3 +25,4 @@
      state: present
   register: result
   until: result is succeeded
+  when: ubuntu_python_dependencies is defined

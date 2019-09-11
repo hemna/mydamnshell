@@ -8,6 +8,7 @@
       runrefresh: yes
   with_items:
       - "{{ suse_package_repos }}"
+  when: suse_package_repos is defined
 
 - name: install required suse dependencies
   become: True
@@ -16,6 +17,7 @@
      state: present
   register: result
   until: result is succeeded
+  when: suse_package_dependencies is defined
 
 - name: install required suse python dependencies
   become: True
@@ -24,3 +26,4 @@
      state: present
   register: result
   until: result is succeeded
+  when: suse_python_dependencies is defined

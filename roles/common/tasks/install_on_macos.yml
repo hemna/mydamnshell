@@ -6,6 +6,7 @@
      state: present
   register: result
   until: result is succeeded
+  when: macos_package_dependencies is defined
 
 - name: install required suse python dependencies
   become: True
@@ -14,3 +15,4 @@
      state: present
   register: result
   until: result is succeeded
+  when: macos_python_dependencies is defined
