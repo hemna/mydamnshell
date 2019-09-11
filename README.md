@@ -38,11 +38,17 @@ Bindep is a tool for checking the presence of binary packages needed to use an a
 https://pypi.org/project/bindep/
 
 
-### Installation
+## Requirements
 
 MDS requires [Ansible](https://docs.ansible.com/ansible/latest/index.html) v2.8 to run.
 
-Install the dependencies and devDependencies and start the server.
+
+## Systems supported
+- openSuse
+
+
+### Installation
+
 
 ```sh
 $ git clone https://github.com/hemna/mydamnshell
