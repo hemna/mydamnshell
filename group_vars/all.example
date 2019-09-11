@@ -7,8 +7,10 @@ suse_package_repos:
     - {name: "server_monitoring", url: "http://download.opensuse.org/repositories/server:/monitoring/openSUSE_Leap_15.1/"}
     - {name: "shells_fish_release_3", url: "http://download.opensuse.org/repositories/shells:/fish:/release:/3/openSUSE_Leap_15.0/"}
 
+# ubuntu_package_repos:
+#    - {name: "", url: ""}
 
-#debian_package_repos:
+# redhat_package_repos:
 #    - {name: "", url: ""}
 
 # what user are you trying to setup?

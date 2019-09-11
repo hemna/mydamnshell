@@ -1,0 +1,16 @@
+---
+- name: install required MacOS dependencies
+  become: True
+  homebrew:
+     name: "{{ macos_package_dependencies }}"
+     state: present
+  register: result
+  until: result is succeeded
+
+- name: install required suse python dependencies
+  become: True
+  pip:
+     name: "{{ macos_python_dependencies }}"
+     state: present
+  register: result
+  until: result is succeeded

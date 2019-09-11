@@ -5,6 +5,16 @@
   tags: package-install
 
 - name: include_tasks install_on_ubuntu.yml
-  include_tasks: roles/common/tasks/installs_on_ubuntu.yml
+  include_tasks: installs_on_ubuntu.yml
   when: ansible_os_family == "Debian"
+  tags: package-install
+
+- name: include_tasks install_on_redhat.yml
+  include_tasks: installs_on_redhat.yml
+  when: ansible_os_family == "RedHat"
+  tags: package-install
+
+- name: include_tasks install_on_macos.yml
+  include_tasks: installs_on_macos.yml
+  when: ansible_os_family == "Darwin"
   tags: package-install

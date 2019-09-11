@@ -1,0 +1,24 @@
+---
+- name: add Apt repositories
+    yum_repository:
+      name: "{{ item.name }}"
+      repo: "{{ item.url }}"
+      state: present
+  with_items:
+      - "{{ redhat_package_repos }}"
+
+- name: install required redhat dependencies
+  become: True
+  package:
+     name: "{{ redhat_package_dependencies }}"
+     state: present
+  register: result
+  until: result is succeeded
+
+- name: install required redhat python dependencies
+  become: True
+  pip:
+     name: "{{ redhat_python_dependencies }}"
+     state: present
+  register: result
+  until: result is succeeded

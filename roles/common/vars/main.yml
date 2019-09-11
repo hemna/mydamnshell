@@ -11,10 +11,30 @@ suse_package_dependencies:
 suse_python_dependencies:
     - bindep
 
-debian_package_dependencies:
+ubuntu_package_dependencies:
+    - wget
+    - git
+    - python-apt
+    - python3
+    - python3-apt
+    - python3-bindep
+    - python3-pip
+
+# ubuntu_python_dependencies:
+#    - something
+
+redhat_package_dependencies:
+    - wget
+    - git
     - python3
     - python3-bindep
     - python3-pip
 
-#debian_python_dependencies:
-#    - something
+macos_package_dependencies:
+    - wget
+    - git
+    - python2
+    - python3
+
+macos_python_dependencies:
+    - bindep
