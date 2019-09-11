@@ -25,10 +25,11 @@ way you like it.
 
 # dotfiles repo layout requirements
 The 'dotfiles' repo has to have a few required files and directories
-- a 'requirements' directory with the following
-  - bindep.txt (optional)
-  - python-requirements.txt (optional)
-  - python3-requirements.txt (optional)
+- a 'mydamnshell' directory with the following
+  - 'requirements' directory with:
+    - bindep.txt (optional)
+    - python-requirements.txt (optional)
+    - python3-requirements.txt (optional)
 - a setup script called 'setup.sh'
 
 

@@ -5,6 +5,8 @@
     repo: "{{ item.url }}"
     dest: "{{ item.name }}"
     version: "{{ item.branch }}"
+    accept_hostkey: true
+    force: true
   become: yes
   become_user: "{{ username }}"
 

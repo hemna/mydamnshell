@@ -2,7 +2,7 @@
 # Now that we have their bindep, lets run bindep and find out
 # what we have to install on this system
 - name: run bindep to discover users's required pacakges
-  shell: bindep -f ~{{ username }}/{{ item.name }}/{{ bindep_file }}
+  shell: bindep -f ~{{ username }}/{{ item.name }}/{{ bindep_file }} | tail -1
   register: bindep_result
   ignore_errors: True
 
@@ -12,22 +12,25 @@
 
 - name: install list of packages
   package:
-     name: "{{ item }}"
-     state: present
-  with_items:
-     - "{{bindep_list_result.stdout_lines}}"
+    name: "{{ pkg }}"
+    state: present
+  loop: "{{bindep_list_result.stdout_lines|flatten}}"
+  loop_control:
+    loop_var: pkg 
   when:
      -  bindep_result.stdout != ""
-     -  ansible_family == "RedHat" or
-        ansible_family == "Debian" or
-        ansible_family == "Suse"
+     -  ansible_os_family == "RedHat" or
+        ansible_os_family == "Debian" or
+        ansible_os_family == "Suse"
 
 - name: install list of packages (MacOS)
   package:
-     name: "{{ item }}"
+     name: "{{ pkg }}"
      state: present
-  with_items:
+  loop:
      - "{{bindep_list_result.stdout_lines}}"
+  loop_control:
+    loop_var: pkg 
   when:
      -  bindep_result.stdout != ""
-     -  ansible_family == "Darwin"
+     -  ansible_os_family == "Darwin"

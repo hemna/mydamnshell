@@ -1,7 +1,7 @@
 ---
 - name: add Apt repositories
   apt_repository:
-      name: "{{ item.name }}"
+      filename: "{{ item.name }}"
       repo: "{{ item.url }}"
       state: present
       validate_certs: yes
