@@ -1,6 +1,6 @@
 ---
 - name: add Apt repositories
-    apt_repository:
+  apt_repository:
       name: "{{ item.name }}"
       repo: "{{ item.url }}"
       state: present
