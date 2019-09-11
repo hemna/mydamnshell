@@ -3,6 +3,9 @@ This project is a set of ansible playbooks that can be used
 to pull down 'dotfiles' git repos to setup a user's shell with all
 the whizbangs and super bitchen custom apps, shells, that you want.
 
+This can be used as part of a vagrant vm provisioning script, to 
+auto setup your shell the way you like it.
+
 ## My Damn Shell!!
 
 
