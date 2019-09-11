@@ -10,9 +10,9 @@ the whizbangs and super bitchen custom apps, shells, that you want.
 # What MDS does
 - Installs some basic requirements that MDS needs (bindep)
 - Loops over defined dotfiles repos and
--- Clones defined 'dotfiles' git repos
--- Installs any binary dependencies as defined in each dotfiles repo (from requirements/bindep.txt)
--- Installs any python2 and python3 packages as defined in each dotfiles repo (requirements/python-requirements.txt)
+  - Clones defined 'dotfiles' git repos
+  - Installs any binary dependencies as defined in each dotfiles repo (from requirements/bindep.txt)
+  - Installs any python2 and python3 packages as defined in each dotfiles repo (requirements/python-requirements.txt)
 - Runs setup.sh in each dotfiles repo
 
 # dotfiles git repo ?
