@@ -16,5 +16,18 @@
      state: present
   with_items:
      - "{{bindep_list_result.stdout_lines}}"
-  when: >
-      bindep_result.stdout != ""
+  when:
+     -  bindep_result.stdout != ""
+     -  ansible_family == "RedHat" or
+        ansible_family == "Debian" or
+        ansible_family == "Suse"
+
+- name: install list of packages (MacOS)
+  package:
+     name: "{{ item }}"
+     state: present
+  with_items:
+     - "{{bindep_list_result.stdout_lines}}"
+  when:
+     -  bindep_result.stdout != ""
+     -  ansible_family == "Darwin"
