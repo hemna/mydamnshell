@@ -77,7 +77,9 @@ $ ansible-playbook -i hosts site.yml
 ### Todos
 
  - Write Tests
- - ?
+ - add support for Ubuntu
+ - add support for Redhat
+ - add support for MacOS
 
 License
 ----
