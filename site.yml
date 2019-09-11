@@ -13,11 +13,11 @@
     - name: debug it
       debug:
         msg: "{{ has_entry_in_known_hosts_file.rc }}"
-      when: has_entry_in_known_hosts is defined
+      when: has_entry_in_known_hosts_file is defined
 
     - name: Ignore host key on first run
       when:
-        - has_entry_in_known_hosts is defined
+        - has_entry_in_known_hosts_file is defined
         - has_entry_in_known_hosts_file.rc == 255
       set_fact:
         ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
