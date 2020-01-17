@@ -1,6 +1,6 @@
 ---
 - name: install required MacOS dependencies
-  become: True
+  become: False
   homebrew:
      name: "{{ macos_package_dependencies }}"
      state: present
@@ -8,11 +8,16 @@
   until: result is succeeded
   when: macos_package_dependencies is defined
 
-- name: install required suse python dependencies
-  become: True
-  pip:
-     name: "{{ macos_python_dependencies }}"
-     state: present
-  register: result
-  until: result is succeeded
+- name: install required MacOS python deps
+  command: /usr/local/bin/pip3 install "{{ item }}"
+  loop: "{{ macos_python_dependencies }}"
   when: macos_python_dependencies is defined
+  
+#- name: install required MacOS python dependencies
+#  become: False
+#  pip:
+#     name: "{{ macos_python_dependencies }}"
+#     state: present
+#  register: result
+#  until: result is succeeded
+#  when: macos_python_dependencies is defined
