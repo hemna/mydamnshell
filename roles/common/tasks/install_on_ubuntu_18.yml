@@ -1,0 +1,28 @@
+---
+- name: add Apt repositories
+  apt_repository:
+      filename: "{{ item.name }}"
+      repo: "{{ item.url }}"
+      state: present
+      validate_certs: yes
+  with_items:
+      - "{{ ubuntu_package_repos }}"
+  when: ubuntu18_package_repos is defined
+
+- name: install required ubuntu dependencies
+  become: True
+  package:
+     name: "{{ ubuntu_package_dependencies }}"
+     state: present
+  register: result
+  until: result is succeeded
+  when: ubuntu18_package_dependencies is defined
+
+- name: install required ubuntu python dependencies
+  become: True
+  pip:
+     name: "{{ ubuntu_python_dependencies }}"
+     state: present
+  register: result
+  until: result is succeeded
+  when: ubuntu18_python_dependencies is defined
